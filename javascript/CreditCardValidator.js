@@ -1,7 +1,13 @@
 
 
 exports.isValidMasterCardNumber = (input) => {
+    if(!input)
+        return false;
+
     input = input.trim();
+
+    // apply regex to strip all non digit characters.
+
     var firstTwoDigits = Number.parseInt(input.substring(0, 2));
     var firstSixDigits = Number.parseInt(input.substring(0, 6));
 

@@ -30,9 +30,19 @@ describe("credit card validator", function() {
     });
 
     // validating input.length == 19 check
-    it("when the card number is ...", () => {
-        var isValid = CreditCardValidator.isValidMasterCardNumber("53");
-        expect(isValid).toBe(false, "... is not a valid length for master card");
+    it("when the card number is 18 digits and a valid starting number", () => {
+        var isValid = CreditCardValidator.isValidMasterCardNumber("53234323212323456");
+        expect(isValid).toBe(false, "18 digits is not a valid length for master card");
+    });
+
+    it("when the card number is 19 digits and a valid starting number", () => {
+        var isValid = CreditCardValidator.isValidMasterCardNumber("5323432321232345670");
+        expect(isValid).toBe(true, "19 digits is a valid length for master card");
+    });
+
+    it("when the card number is 20 digits and a valid starting number", () => {
+        var isValid = CreditCardValidator.isValidMasterCardNumber("53234323212323456909");
+        expect(isValid).toBe(false, "20 digits is not a valid length for master card");
     });
 
     // Now that the first part of your conditional is tested, you can move forward with only 
@@ -56,19 +66,20 @@ describe("credit card validator", function() {
     });
 
     // Now you validate firstTwoDigits <= 55
+    it("when the card number length is valid and the starting number is 54", () => {
+        var isValid = CreditCardValidator.isValidMasterCardNumber("5434567891245156");
+        expect(isValid).toBe(true, "master card does start with 54");
+    });
 
+    it("when the card number length is valid and the starting number is 55", () => {
+        var isValid = CreditCardValidator.isValidMasterCardNumber("5534567891245156");
+        expect(isValid).toBe(true, "master card does start with 55");
+    });
 
-
-
-
-
-
-
-
-
-
-
-
+    it("when the card number length is valid and the starting number is 56", () => {
+        var isValid = CreditCardValidator.isValidMasterCardNumber("5634567891245156");
+        expect(isValid).toBe(false, "master card does not start with 56");
+    });
 
     // ... Great job!
 
@@ -80,6 +91,38 @@ describe("credit card validator", function() {
     // from above.
     //
     // (firstSixDigits >= 222100 && firstSixDigits <= 272099)
-
+    it("when the card number length is valid and the starting number is 222099", () => {
+        var isValid = CreditCardValidator.isValidMasterCardNumber("2220997891245156");
+        expect(isValid).toBe(false, "master card does not start with 222099");
+    });
     
+    it("when the card number length is valid and the starting number is 222100", () => {
+        var isValid = CreditCardValidator.isValidMasterCardNumber("2221007891245156");
+        expect(isValid).toBe(true, "master card does not start with 222100");
+    });
+
+    it("when the card number length is valid and the starting number is 222101", () => {
+        var isValid = CreditCardValidator.isValidMasterCardNumber("2221017891245156");
+        expect(isValid).toBe(true, "master card does not start with 222101");
+    });
+
+    it("when the card number length is valid and the starting number is 272098", () => {
+        var isValid = CreditCardValidator.isValidMasterCardNumber("2720987891245156");
+        expect(isValid).toBe(true, "master card starts with 272098");
+    });
+
+    it("when the card number length is valid and the starting number is 272099", () => {
+        var isValid = CreditCardValidator.isValidMasterCardNumber("2720997891245156");
+        expect(isValid).toBe(true, "master card starts with 272099");
+    });
+
+    it("when the card number length is valid and the starting number is 272100", () => {
+        var isValid = CreditCardValidator.isValidMasterCardNumber("2721007891245156");
+        expect(isValid).toBe(false, "master card starts with 272100");
+    });
+
+    it("when the card number length is valid and the starting number is 272100", (myvale) => {
+        var isValid = CreditCardValidator.isValidMasterCardNumber(myvale);
+        expect(isValid).toBe(false, "master card starts with 272100");
+    });
 });
