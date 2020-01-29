@@ -1,0 +1,14 @@
+{
+  "name": "unit-test-demo",
+  "version": "1.0.0",
+  "description": "This is a simple demo of unit testing with javascript.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "author": "Matthew Rhoden",
+  "license": "ISC",
+  "devDependencies": {
+    "jasmine": "^3.5.0"
+  }
+}
